@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InfoTech Academy | Curso de Informática</title>
+  <meta name="description" content="Aprenda informática do zero ao avançado. Aulas práticas, mentoria ao vivo e certificado. Matricule-se agora!" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #3859f2;
+      --accent: #f27340;
+      --dark: #0f121f;
+      --gray-600: #666b7a;
+      --gray-100: #f5f6f8;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ========== HEADER ========= */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      height: 64px;
+      background: var(--white);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--primary);
+    }
+
+    .menu-btn {
+      width: 36px;
+      height: 36px;
+      border: none;
+      border-radius: 8px;
+      background: var(--gray-100);
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ========== HERO ========= */
+    .hero {
+      background: var(--dark);
+      color: var(--white);
+      padding: 32px 20px 40px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .hero-photo {
+      width: 100%;
+      max-width: 300px;
+      height: 340px;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #262b47;
+      position: relative;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 16px;
+      background: rgba(242, 115, 64, 0.18);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .hero h1 {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.2;
+      max-width: 320px;
+    }
+
+    .hero p {
+      font-size: 14px;
+      color: #b8bdd0;
+      max-width: 320px;
+      line-height: 1.55;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 320px;
+      height: 52px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+      box-shadow: 0 6px 20px rgba(242, 115, 64, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid var(--white);
+      height: 48px;
+    }
+
+    .social-proof {
+      font-size: 12px;
+      color: #a0a8c0;
+      margin-top: 4px;
+    }
+
+    /* ========== BENEFITS ========= */
+    .benefits {
+      background: var(--gray-100);
+      padding: 48px 20px;
+      text-align: center;
+    }
+
+    .benefits h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .card {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--white);
+      border-radius: 14px;
+      padding: 18px 16px;
+      text-align: left;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+    }
+
+    .card .emoji {
+      font-size: 26px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .card h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .card p {
+      font-size: 12px;
+      color: var(--gray-600);
+      line-height: 1.4;
+    }
+
+    /* ========== CTA FINAL ========= */
+    .cta-final {
+      background: var(--primary);
+      color: var(--white);
+      padding: 48px 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .cta-final h2 {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.3;
+      max-width: 320px;
+    }
+
+    .cta-final p {
+      font-size: 14px;
+      color: #d9e0ff;
+    }
+
+    .btn-white {
+      background: var(--white);
+      color: var(--primary);
+      max-width: 300px;
+      box-shadow: 0 5px 18px rgba(0,0,0,0.18);
+    }
+
+    /* ========== FOOTER ========= */
+    .footer {
+      background: var(--dark);
+      color: #8a93a8;
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    /* ========== DESKTOP ========= */
+    @media (min-width: 768px) {
+      .header {
+        padding: 0 64px;
+        height: 72px;
+      }
+
+      .logo {
+        font-size: 22px;
+      }
+
+      .menu-btn {
+        display: none;
+      }
+
+      .nav-desktop {
+        display: flex;
+        gap: 36px;
+        font-size: 14px;
+        color: var(--gray-600);
+      }
+
+      .hero {
+        flex-direction: row;
+        text-align: left;
+        padding: 60px 64px;
+        gap: 48px;
+        min-height: 620px;
+        align-items: center;
+      }
+
+      .hero-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+      }
+
+      .hero-photo {
+        max-width: 420px;
+        height: 480px;
+        flex-shrink: 0;
+      }
+
+      .hero h1 {
+        font-size: 44px;
+        max-width: 480px;
+      }
+
+      .hero p {
+        font-size: 17px;
+        max-width: 440px;
+      }
+
+      .btn {
+        width: auto;
+        min-width: 210px;
+        padding: 0 28px;
+      }
+
+      .btn-row {
+        display: flex;
+        gap: 14px;
+        width: 100%;
+      }
+
+      .benefits {
+        padding: 70px 64px;
+      }
+
+      .benefits h2 {
+        font-size: 28px;
+        margin-bottom: 40px;
+      }
+
+      .cards {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 1100px;
+        gap: 20px;
+      }
+
+      .card {
+        flex: 1 1 240px;
+        max-width: 280px;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        padding: 28px 22px;
+      }
+
+      .cta-final {
+        padding: 70px 64px;
+      }
+
+      .cta-final h2 {
+        font-size: 32px;
+        max-width: 520px;
+      }
+
+      .footer {
+        padding: 32px 64px;
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .nav-desktop {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">InfoTech ⚡</div>
+    <nav class="nav-desktop">
+      <a href="#cursos">Cursos</a>
+      <a href="#metodologia">Metodologia</a>
+      <a href="#alunos">Alunos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <button class="menu-btn" aria-label="Menu">☰</button>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-photo">
+      <!-- Substitua pela foto real da aluna -->
+      <img 
+        src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=800&fit=crop&crop=faces" 
+        alt="Aluna estudando informática" 
+        width="420" 
+        height="480"
+      />
+    </div>
+
+    <div class="hero-content">
+      <span class="badge">✨ Nova turma em breve</span>
+      <h1>Ela já está<br>transformando<br>o futuro dela.</h1>
+      <p>Junte-se a centenas de alunos que estão aprendendo informática de verdade com projetos práticos e mentoria ao vivo.</p>
+
+      <div class="btn-row">
+        <a href="#matricula" class="btn btn-primary">Quero estudar também →</a>
+        <a href="#cursos" class="btn btn-outline">Ver o curso</a>
+      </div>
+
+      <p class="social-proof">★★★★★  4.9/5  •  +1.200 alunos formados</p>
+    </div>
+  </section>
+
+  <!-- BENEFÍCIOS -->
+  <section class="benefits" id="metodologia">
+    <h2>Por que escolher a gente</h2>
+    <div class="cards">
+      <div class="card">
+        <span class="emoji">💻</span>
+        <div>
+          <h3>Aulas práticas</h3>
+          <p>Mais de 70% do tempo é hands-on. Você aprende fazendo de verdade.</p>
+        </div>
+      </div>
+      <div class="card">
+        <span class="emoji">👩‍🏫</span>
+        <div>
+          <h3>Mentoria ao vivo</h3>
+          <p>Tire dúvidas em tempo real com professores que trabalham na área.</p>
+        </div>
+      </div>
+      <div class="card">
+        <span class="emoji">🏆</span>
+        <div>
+          <h3>Certificado + Portfólio</h3>
+          <p>Saia com projetos prontos para mostrar em entrevistas.</p>
+        </div>
+      </div>
+      <div class="card">
+        <span class="emoji">🚀</span>
+        <div>
+          <h3>Carreira</h3>
+          <p>Orientação de carreira e networking com o mercado de trabalho.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-final" id="matricula">
+    <h2>Ela já deu o primeiro passo.<br>E você, vai ficar de fora?</h2>
+    <p>Vagas limitadas. Comece sua transformação hoje.</p>
+    <a href="https://wa.me/5500000000000?text=Olá! Quero me matricular no curso de informática" class="btn btn-white" target="_blank" rel="noopener">
+      Quero minha vaga agora
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contato">
+    © 2026 InfoTech Academy<br>
+    Curso de Informática • Transformando vidas através da tecnologia
+  </footer>
+
+</body>
+</html>
