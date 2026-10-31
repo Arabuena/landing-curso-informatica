@@ -116,6 +116,19 @@
       font-weight: 500;
     }
 
+    .msg {
+      margin-top: 12px;
+      min-height: 18px;
+      font-size: 13px;
+      line-height: 1.4;
+      text-align: center;
+      color: var(--gray-600);
+    }
+
+    .msg.bad {
+      color: #d43f3f;
+    }
+
     .back {
       margin-top: 24px;
       font-size: 13px;
@@ -135,14 +148,15 @@
     <div class="logo">InfoTech ⚡</div>
     <p class="subtitle">Área do aluno — faça login para continuar</p>
 
-    <form action="#" method="post" onsubmit="event.preventDefault(); alert('Login em desenvolvimento. Em breve você poderá acessar suas aulas por aqui!');">
-      <label for="email">E-mail ou matrícula</label>
-      <input type="text" id="email" name="email" placeholder="seu@email.com" required />
+    <form id="loginForm" novalidate>
+      <label for="usuario">Usuário</label>
+      <input type="text" id="usuario" name="usuario" placeholder="seu_usuario" autocomplete="username" required />
 
       <label for="senha">Senha</label>
-      <input type="password" id="senha" name="senha" placeholder="••••••••" required />
+      <input type="password" id="senha" name="senha" placeholder="••••••••" autocomplete="current-password" required />
 
-      <button type="submit" class="btn">Entrar</button>
+      <button type="submit" class="btn" id="loginBtn">Entrar</button>
+      <p id="loginMsg" class="msg" role="status" aria-live="polite"></p>
     </form>
 
     <div class="links">
@@ -153,6 +167,44 @@
   <p class="back">
     <a href="index.html">← Voltar para a página inicial</a>
   </p>
+
+  <script>
+    const API_BASE = "https://curso-jogos-prog.onrender.com";
+    const PLATFORM_URL = API_BASE + "/cursos.html";
+
+    document.getElementById("loginForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const msg = document.getElementById("loginMsg");
+      const btn = document.getElementById("loginBtn");
+      const username = document.getElementById("usuario").value.trim();
+      const password = document.getElementById("senha").value;
+
+      if (!username || !password) {
+        msg.className = "msg bad";
+        msg.textContent = "Informe usuário e senha.";
+        return;
+      }
+
+      msg.className = "msg";
+      msg.textContent = "Entrando...";
+      btn.disabled = true;
+
+      try {
+        const res = await fetch(API_BASE + "/api/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await res.json().catch(() => ({ error: "Resposta inválida do servidor." }));
+        if (!res.ok) throw new Error(data.error || "Não foi possível entrar.");
+        location.href = PLATFORM_URL + "#token=" + encodeURIComponent(data.token);
+      } catch (err) {
+        msg.className = "msg bad";
+        msg.textContent = err.message;
+        btn.disabled = false;
+      }
+    });
+  </script>
 
 </body>
 </html>
