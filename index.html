@@ -296,9 +296,23 @@
       margin: 0 auto 24px;
     }
 
+    .course-actions {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .course-btn {
+      width: 100%;
+      max-width: none;
+      min-width: 0;
+      height: 46px;
+      font-size: 14px;
+    }
+
     .course-link {
       display: inline-block;
-      margin-top: 12px;
       font-size: 13px;
       font-weight: 600;
       color: var(--primary);
@@ -503,7 +517,10 @@
         <div>
           <h3>Digitação</h3>
           <p>Ganhe agilidade e precisão no teclado com exercícios guiados.</p>
-          <a class="course-link" href="https://curso-jogos-prog.onrender.com/?next=%2Fcursos.html%3Fcurso%3Ddigitacao">Acessar curso →</a>
+          <div class="course-actions">
+            <a class="btn btn-primary course-btn" href="https://curso-jogos-prog.onrender.com/?next=%2Fcursos.html%3Fcurso%3Ddigitacao">Entrar em Digitação</a>
+            <a class="course-link" href="https://curso-jogos-prog.onrender.com/cursos.html?curso=digitacao">Link direto do curso</a>
+          </div>
         </div>
       </div>
       <div class="card">
@@ -511,7 +528,10 @@
         <div>
           <h3>Programação</h3>
           <p>Lógica, blocos e código: aprenda programando de verdade.</p>
-          <a class="course-link" href="https://curso-jogos-prog.onrender.com/?next=%2Fcursos.html%3Fcurso%3Dprogramacao">Acessar curso →</a>
+          <div class="course-actions">
+            <a class="btn btn-primary course-btn" href="https://curso-jogos-prog.onrender.com/?next=%2Fcursos.html%3Fcurso%3Dprogramacao">Entrar em Programação</a>
+            <a class="course-link" href="https://curso-jogos-prog.onrender.com/cursos.html?curso=programacao">Link direto do curso</a>
+          </div>
         </div>
       </div>
     </div>
