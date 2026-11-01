@@ -1,102 +1,182 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>InfoTech Academy | Curso de Informática</title>
-  <meta name="description" content="Aprenda informática do zero ao avançado. Aulas práticas, mentoria ao vivo e certificado. Matricule-se agora!" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <meta name="description" content="Aprenda informática do zero ao avançado. Aulas práticas, mentoria ao vivo e certificado. Matricule-se agora!">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #3859f2;
-      --accent: #f27340;
-      --dark: #0f121f;
-      --gray-600: #666b7a;
-      --gray-100: #f5f6f8;
-      --white: #ffffff;
+      --bg: #05070f;
+      --surface: #0c101c;
+      --surface-2: #12182a;
+      --primary: #6366f1;
+      --primary-glow: rgba(99, 102, 241, 0.45);
+      --accent: #22d3ee;
+      --accent-2: #a78bfa;
+      --orange: #fb923c;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --border: rgba(255,255,255,0.08);
+      --radius: 20px;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      color: var(--dark);
-      background: var(--white);
-      line-height: 1.5;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
+    h1, h2, h3, .logo, .btn {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ========== ANIMATED BACKGROUND ========== */
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(99,102,241,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99,102,241,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
     }
 
-    /* ========== HEADER ========= */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+      animation: float 12s ease-in-out infinite;
+    }
+
+    .orb-1 {
+      width: 500px; height: 500px;
+      background: rgba(99, 102, 241, 0.2);
+      top: -150px; left: -100px;
+    }
+
+    .orb-2 {
+      width: 400px; height: 400px;
+      background: rgba(34, 211, 238, 0.12);
+      bottom: 10%; right: -80px;
+      animation-delay: -4s;
+      animation-duration: 15s;
+    }
+
+    .orb-3 {
+      width: 300px; height: 300px;
+      background: rgba(167, 139, 250, 0.12);
+      top: 40%; left: 30%;
+      animation-delay: -7s;
+      animation-duration: 18s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -40px) scale(1.05); }
+      66% { transform: translate(-20px, 20px) scale(0.95); }
+    }
+
+    /* ========== HEADER ========== */
     .header {
       position: sticky;
       top: 0;
-      z-index: 50;
+      z-index: 100;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 20px;
-      height: 64px;
-      background: var(--white);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-      gap: 12px;
+      padding: 0 24px;
+      height: 70px;
+      background: rgba(5, 7, 15, 0.8);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
     }
 
     .logo {
       font-weight: 700;
-      font-size: 18px;
-      color: var(--primary);
-      flex-shrink: 0;
-    }
-
-    .header-actions {
+      font-size: 20px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
-    .btn-login {
-      display: inline-flex;
+    .logo-icon {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 10px;
+      display: flex;
       align-items: center;
       justify-content: center;
-      height: 36px;
-      padding: 0 14px;
-      border-radius: 8px;
+      font-size: 16px;
+      box-shadow: 0 0 20px var(--primary-glow);
+    }
+
+    .nav-desktop {
+      display: none;
+      gap: 32px;
+    }
+
+    .nav-desktop a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color 0.25s;
+      position: relative;
+    }
+
+    .nav-desktop a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+
+    .nav-desktop a:hover { color: var(--text); }
+    .nav-desktop a:hover::after { width: 100%; }
+
+    .btn-login {
+      height: 40px;
+      padding: 0 18px;
+      border-radius: 12px;
       font-size: 13px;
       font-weight: 600;
-      border: 1.5px solid var(--primary);
-      color: var(--primary);
-      background: transparent;
-      white-space: nowrap;
-      transition: background 0.15s, color 0.15s;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      transition: all 0.25s;
     }
 
     .btn-login:hover {
-      background: var(--primary);
-      color: var(--white);
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.2);
     }
 
     .menu-btn {
-      width: 36px;
-      height: 36px;
-      border: none;
-      border-radius: 8px;
-      background: var(--gray-100);
+      width: 40px; height: 40px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
       font-size: 18px;
       cursor: pointer;
       display: flex;
@@ -104,200 +184,348 @@
       justify-content: center;
     }
 
-    /* ========== HERO ========= */
+    /* ========== HERO ========== */
     .hero {
-      background: var(--dark);
-      color: var(--white);
-      padding: 32px 20px 40px;
-      text-align: center;
+      position: relative;
+      z-index: 1;
+      padding: 48px 24px 72px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 18px;
+      gap: 40px;
+      min-height: calc(100vh - 70px);
+      justify-content: center;
     }
 
-    .hero-photo {
-      width: 100%;
-      max-width: 300px;
-      height: 340px;
-      border-radius: 20px;
-      overflow: hidden;
-      background: #262b47;
-      position: relative;
-    }
-
-    .hero-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top center;
+    .hero-content {
+      text-align: center;
+      max-width: 640px;
+      animation: fadeUp 0.8s ease-out both;
     }
 
     .badge {
-      display: inline-block;
-      padding: 6px 14px;
-      border-radius: 16px;
-      background: rgba(242, 115, 64, 0.18);
-      color: var(--accent);
-      font-size: 12px;
-      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 100px;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #a5b4fc;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      animation: pulse-badge 2.5s ease-in-out infinite;
+    }
+
+    .badge-dot {
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent);
+      animation: blink 1.5s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    @keyframes pulse-badge {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(99,102,241,0.3); }
+      50% { box-shadow: 0 0 0 8px rgba(99,102,241,0); }
     }
 
     .hero h1 {
-      font-size: 28px;
+      font-size: clamp(36px, 7vw, 64px);
       font-weight: 700;
-      line-height: 1.2;
-      max-width: 320px;
+      line-height: 1.08;
+      letter-spacing: -1.5px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 .gradient {
+      background: linear-gradient(135deg, #818cf8, #22d3ee, #a78bfa);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 5s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
     }
 
     .hero p {
-      font-size: 14px;
-      color: #b8bdd0;
-      max-width: 320px;
-      line-height: 1.55;
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 28px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 100%;
-      max-width: 320px;
-      height: 52px;
-      border-radius: 12px;
+      gap: 8px;
+      height: 54px;
+      padding: 0 28px;
+      border-radius: 14px;
       font-size: 15px;
       font-weight: 600;
       border: none;
       cursor: pointer;
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-
-    .btn:active {
-      transform: scale(0.98);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
     }
 
     .btn-primary {
-      background: var(--accent);
-      color: var(--white);
-      box-shadow: 0 6px 20px rgba(242, 115, 64, 0.35);
+      background: linear-gradient(135deg, var(--primary), #818cf8);
+      color: white;
+      box-shadow: 0 0 30px var(--primary-glow), 0 8px 20px rgba(0,0,0,0.3);
     }
 
-    .btn-outline {
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.5s;
+    }
+
+    .btn-primary:hover::before { transform: translateX(100%); }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px var(--primary-glow), 0 12px 28px rgba(0,0,0,0.4);
+    }
+
+    .btn-ghost {
       background: transparent;
-      color: var(--white);
-      border: 1.5px solid var(--white);
-      height: 48px;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.2);
     }
 
     .social-proof {
-      font-size: 12px;
-      color: #a0a8c0;
-      margin-top: 4px;
-    }
-
-    /* ========== BENEFITS ========= */
-    .benefits {
-      background: var(--gray-100);
-      padding: 48px 20px;
-      text-align: center;
-    }
-
-    .benefits h2 {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 24px;
-    }
-
-    .cards {
       display: flex;
-      flex-direction: column;
-      gap: 14px;
-      max-width: 400px;
-      margin: 0 auto;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--muted);
     }
 
-    .card {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      background: var(--white);
+    .stars { color: #fbbf24; letter-spacing: 2px; }
+
+    .hero-visual {
+      position: relative;
+      width: 100%;
+      max-width: 380px;
+      animation: fadeUp 0.8s ease-out 0.2s both;
+    }
+
+    .photo-frame {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .photo-frame::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(5,7,15,0.7) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .photo-glow {
+      position: absolute;
+      inset: -2px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, var(--primary), var(--accent), var(--accent-2));
+      z-index: -1;
+      animation: borderGlow 4s ease-in-out infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes borderGlow {
+      0%, 100% { opacity: 0.5; filter: blur(8px); }
+      50% { opacity: 0.9; filter: blur(12px); }
+    }
+
+    .floating-card {
+      position: absolute;
+      background: rgba(12, 16, 28, 0.9);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 18px 16px;
-      text-align: left;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      animation: floatCard 4s ease-in-out infinite;
     }
 
-    .card .emoji {
-      font-size: 26px;
-      line-height: 1;
+    .floating-card.card-1 {
+      top: 12%;
+      left: -20px;
+      animation-delay: 0s;
+    }
+
+    .floating-card.card-2 {
+      bottom: 18%;
+      right: -24px;
+      animation-delay: -2s;
+    }
+
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .floating-card .icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
       flex-shrink: 0;
     }
 
-    .card h3 {
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 4px;
+    .card-1 .icon { background: rgba(34, 211, 238, 0.15); }
+    .card-2 .icon { background: rgba(251, 146, 60, 0.15); }
+
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 80px 24px;
     }
 
-    .card p {
+    .section-label {
+      display: inline-block;
       font-size: 12px;
-      color: var(--gray-600);
-      line-height: 1.4;
-    }
-
-    /* ========== CTA FINAL ========= */
-    .cta-final {
-      background: var(--primary);
-      color: var(--white);
-      padding: 48px 24px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .cta-final h2 {
-      font-size: 22px;
       font-weight: 700;
-      line-height: 1.3;
-      max-width: 320px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin-bottom: 12px;
     }
 
-    .cta-final p {
-      font-size: 14px;
-      color: #d9e0ff;
+    .section-title {
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.8px;
+      margin-bottom: 12px;
     }
 
-    .btn-white {
-      background: var(--white);
-      color: var(--primary);
-      max-width: 300px;
-      box-shadow: 0 5px 18px rgba(0,0,0,0.18);
+    .section-sub {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 48px;
     }
 
-    /* ========== CURSOS ========= */
     .cursos {
-      background: var(--white);
-      padding: 48px 20px;
       text-align: center;
     }
 
-    .cursos h2 {
+    .cursos .section-sub { margin-left: auto; margin-right: auto; }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .course-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px 28px;
+      text-align: left;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .course-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s;
+    }
+
+    .course-card:hover {
+      border-color: rgba(99, 102, 241, 0.3);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3), 0 0 30px rgba(99,102,241,0.1);
+    }
+
+    .course-card:hover::before { transform: scaleX(1); }
+
+    .course-icon {
+      width: 56px; height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(34,211,238,0.1));
+      border: 1px solid rgba(99,102,241,0.2);
+    }
+
+    .course-card h3 {
       font-size: 22px;
       font-weight: 700;
       margin-bottom: 8px;
     }
 
-    .cursos-sub {
-      font-size: 13px;
-      color: var(--gray-600);
-      max-width: 420px;
-      margin: 0 auto 24px;
+    .course-card p {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.6;
     }
 
     .course-actions {
-      margin-top: 16px;
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -305,287 +533,426 @@
 
     .course-btn {
       width: 100%;
-      max-width: none;
-      min-width: 0;
-      height: 46px;
+      height: 48px;
+      border-radius: 12px;
       font-size: 14px;
     }
 
     .course-link {
-      display: inline-block;
       font-size: 13px;
-      font-weight: 600;
-      color: var(--primary);
-    }
-
-    .course-link:hover {
-      text-decoration: underline;
-    }
-
-    /* ========== FOOTER ========= */
-    .footer {
-      background: var(--dark);
-      color: #8a93a8;
+      color: var(--accent);
+      font-weight: 500;
       text-align: center;
-      padding: 28px 20px;
-      font-size: 12px;
-      line-height: 1.6;
+      transition: opacity 0.2s;
     }
 
-    /* ========== DESKTOP ========= */
+    .course-link:hover { opacity: 0.7; }
+
+    .benefits {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .benefits .section-sub { margin-left: auto; margin-right: auto; }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .benefit-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px 22px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(99, 102, 241, 0.25);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+    }
+
+    .benefit-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin: 0 auto 16px;
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.15);
+    }
+
+    .benefit-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .benefit-card p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .cta-final {
+      text-align: center;
+      padding: 100px 24px;
+    }
+
+    .cta-box {
+      max-width: 640px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(34,211,238,0.08));
+      border: 1px solid rgba(99,102,241,0.25);
+      border-radius: 28px;
+      padding: 56px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: conic-gradient(from 0deg, transparent, rgba(99,102,241,0.1), transparent 30%);
+      animation: rotate 8s linear infinite;
+    }
+
+    @keyframes rotate {
+      to { transform: rotate(360deg); }
+    }
+
+    .cta-box > * { position: relative; z-index: 1; }
+
+    .cta-box h2 {
+      font-size: clamp(26px, 5vw, 36px);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .cta-box p {
+      color: var(--muted);
+      margin-bottom: 28px;
+      font-size: 16px;
+    }
+
+    .btn-cta {
+      background: linear-gradient(135deg, var(--accent), #06b6d4);
+      color: #05070f;
+      font-weight: 700;
+      box-shadow: 0 0 30px rgba(34, 211, 238, 0.35);
+    }
+
+    .btn-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(34, 211, 238, 0.5);
+    }
+
+    .footer {
+      position: relative;
+      z-index: 1;
+      padding: 40px 24px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     @media (min-width: 768px) {
-      .header {
-        padding: 0 64px;
-        height: 72px;
-      }
+      .header { padding: 0 48px; }
 
-      .logo {
-        font-size: 22px;
-      }
-
-      .menu-btn {
-        display: none;
-      }
-
-      .nav-desktop {
-        display: flex;
-        gap: 36px;
-        font-size: 14px;
-        color: var(--gray-600);
-        margin-left: auto;
-        margin-right: 20px;
-      }
-
-      .btn-login {
-        height: 40px;
-        padding: 0 18px;
-        font-size: 14px;
-        border-radius: 10px;
-      }
+      .nav-desktop { display: flex; }
+      .menu-btn { display: none; }
 
       .hero {
         flex-direction: row;
-        text-align: left;
-        padding: 60px 64px;
-        gap: 48px;
-        min-height: 620px;
+        justify-content: center;
         align-items: center;
+        gap: 64px;
+        padding: 60px 48px 80px;
+        text-align: left;
       }
 
       .hero-content {
+        text-align: left;
+        max-width: 520px;
         flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 18px;
       }
 
-      .hero-photo {
-        max-width: 420px;
-        height: 480px;
+      .hero p { margin-left: 0; }
+
+      .btn-row {
+        flex-direction: row;
+        justify-content: flex-start;
+      }
+
+      .social-proof { justify-content: flex-start; }
+
+      .hero-visual {
+        max-width: 400px;
         flex-shrink: 0;
       }
 
-      .hero h1 {
-        font-size: 44px;
-        max-width: 480px;
+      .floating-card.card-1 { left: -40px; }
+      .floating-card.card-2 { right: -40px; }
+
+      section { padding: 100px 48px; }
+
+      .courses-grid {
+        grid-template-columns: repeat(3, 1fr);
       }
 
-      .hero p {
-        font-size: 17px;
-        max-width: 440px;
+      .benefits-grid {
+        grid-template-columns: repeat(4, 1fr);
       }
 
-      .btn {
-        width: auto;
-        min-width: 210px;
-        padding: 0 28px;
-      }
-
-      .btn-row {
-        display: flex;
-        gap: 14px;
-        width: 100%;
-      }
-
-      .benefits {
-        padding: 70px 64px;
-      }
-
-      .benefits h2 {
-        font-size: 28px;
-        margin-bottom: 40px;
-      }
-
-      .cards {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        max-width: 1100px;
-        gap: 20px;
-      }
-
-      .card {
-        flex: 1 1 240px;
-        max-width: 280px;
-        flex-direction: column;
-        text-align: center;
-        align-items: center;
-        padding: 28px 22px;
-      }
-
-      .cta-final {
-        padding: 70px 64px;
-      }
-
-      .cta-final h2 {
-        font-size: 32px;
-        max-width: 520px;
-      }
-
-      .cursos {
-        padding: 70px 64px;
-      }
-
-      .cursos h2 {
-        font-size: 28px;
-      }
-
-      .footer {
-        padding: 32px 64px;
-        font-size: 13px;
-      }
+      .cta-box { padding: 64px 48px; }
     }
 
-    @media (max-width: 767px) {
-      .nav-desktop {
-        display: none;
-      }
+    @media (min-width: 1100px) {
+      .hero { gap: 80px; }
+      .hero-visual { max-width: 440px; }
+      .hero h1 { font-size: 56px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
+  <div class="bg-grid"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
   <header class="header">
-    <div class="logo">InfoTech ⚡</div>
+    <div class="logo">
+      <div class="logo-icon">⚡</div>
+      InfoTech
+    </div>
     <nav class="nav-desktop">
       <a href="#cursos">Cursos</a>
       <a href="#metodologia">Metodologia</a>
       <a href="#alunos">Alunos</a>
       <a href="#contato">Contato</a>
     </nav>
-    <div class="header-actions">
+    <div style="display:flex;gap:12px;align-items:center">
       <a href="login.html" class="btn-login">Já sou aluno</a>
       <button class="menu-btn" aria-label="Menu">☰</button>
     </div>
   </header>
 
-  <!-- HERO -->
   <section class="hero">
-    <div class="hero-photo">
-      <!-- Substitua pela foto real da aluna -->
-      <img 
-        src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=800&fit=crop&crop=faces" 
-        alt="Aluna estudando informática" 
-        width="420" 
-        height="480"
-      />
-    </div>
-
     <div class="hero-content">
-      <span class="badge">✨ Nova turma em breve</span>
-      <h1>Ela já está<br>transformando<br>o futuro dela.</h1>
-      <p>Junte-se a centenas de alunos que estão aprendendo informática de verdade com projetos práticos e mentoria ao vivo.</p>
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Nova turma em breve
+      </div>
+      <h1>
+        Transforme seu<br>
+        futuro com<br>
+        <span class="gradient">tecnologia</span>
+      </h1>
+      <p>Aprenda informática de verdade com projetos práticos, mentoria ao vivo e um método que já formou +1.200 alunos.</p>
 
       <div class="btn-row">
-        <a href="https://wa.me/5562991683743?text=Olá! Quero me matricular no curso de informática" class="btn btn-primary" target="_blank" rel="noopener">Quero estudar também →</a>
-        <a href="#metodologia" class="btn btn-outline">Ver o curso</a>
+        <a href="https://wa.me/5562991683743?text=Olá! Quero me matricular no curso de informática" class="btn btn-primary" target="_blank" rel="noopener">
+          Quero estudar também →
+        </a>
+        <a href="#metodologia" class="btn btn-ghost">Ver o curso</a>
       </div>
 
-      <p class="social-proof">★★★★★  4.9/5  •  +1.200 alunos formados</p>
+      <div class="social-proof">
+        <span class="stars">★★★★★</span>
+        4.9/5  •  +1.200 alunos formados
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="photo-glow"></div>
+      <div class="photo-frame">
+        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=700&h=900&fit=crop&crop=faces" alt="Estudante de TI" width="440" height="550">
+      </div>
+
+      <div class="floating-card card-1">
+        <div class="icon">💻</div>
+        <div>
+          <div style="font-weight:600;font-size:13px">Aulas práticas</div>
+          <div style="font-size:11px;color:var(--muted)">70% hands-on</div>
+        </div>
+      </div>
+
+      <div class="floating-card card-2">
+        <div class="icon">🚀</div>
+        <div>
+          <div style="font-weight:600;font-size:13px">+1.200 formados</div>
+          <div style="font-size:11px;color:var(--muted)">Nota 4.9/5</div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- CURSOS -->
   <section class="cursos" id="cursos">
-    <h2>Nossos cursos</h2>
-    <p class="cursos-sub">Já é aluno? Entre com seu usuário e vá direto para o curso.</p>
-    <div class="cards">
-      <div class="card">
-        <span class="emoji">⌨️</span>
-        <div>
-          <h3>Digitação</h3>
-          <p>Ganhe agilidade e precisão no teclado com exercícios guiados.</p>
-          <div class="course-actions">
-            <a class="btn btn-primary course-btn" href="https://curso-jogos-prog.onrender.com/?next=%2Fcursos.html%3Fcurso%3Ddigitacao">Entrar em Digitação</a>
-            <a class="course-link" href="https://curso-jogos-prog.onrender.com/cursos.html?curso=digitacao">Link direto do curso</a>
-          </div>
+    <span class="section-label">Comece agora</span>
+    <h2 class="section-title">Nossos cursos</h2>
+    <p class="section-sub">Já é aluno? Entre com seu usuário e vá direto para o curso.</p>
+
+    <div class="courses-grid">
+      <div class="course-card reveal">
+        <div class="course-icon">💻</div>
+        <h3>Informática Geral</h3>
+        <p>Fundamentos do computador: hardware, software, internet, segurança e uso prático no dia a dia.</p>
+        <div class="course-actions">
+          <a class="btn btn-primary course-btn" href="https://curso-jogos-prog.onrender.com/?next=%2Fcursos.html%3Fcurso%3Dinformatica-geral">Entrar em Informática Geral</a>
+          <a class="course-link" href="https://curso-jogos-prog.onrender.com/cursos.html?curso=informatica-geral">Link direto do curso</a>
         </div>
       </div>
-      <div class="card">
-        <span class="emoji">🎮</span>
-        <div>
-          <h3>Programação</h3>
-          <p>Lógica, blocos e código: aprenda programando de verdade.</p>
-          <div class="course-actions">
-            <a class="btn btn-primary course-btn" href="https://curso-jogos-prog.onrender.com/?next=%2Fcursos.html%3Fcurso%3Dprogramacao">Entrar em Programação</a>
-            <a class="course-link" href="https://curso-jogos-prog.onrender.com/cursos.html?curso=programacao">Link direto do curso</a>
-          </div>
+
+      <div class="course-card reveal">
+        <div class="course-icon">⌨️</div>
+        <h3>Digitação</h3>
+        <p>Ganhe agilidade e precisão no teclado com exercícios guiados e progressão clara.</p>
+        <div class="course-actions">
+          <a class="btn btn-primary course-btn" href="https://curso-jogos-prog.onrender.com/?next=%2Fcursos.html%3Fcurso%3Ddigitacao">Entrar em Digitação</a>
+          <a class="course-link" href="https://curso-jogos-prog.onrender.com/cursos.html?curso=digitacao">Link direto do curso</a>
+        </div>
+      </div>
+
+      <div class="course-card reveal">
+        <div class="course-icon">🪟</div>
+        <h3>Windows</h3>
+        <p>Domine o sistema operacional: arquivos, configurações, atalhos e produtividade no dia a dia.</p>
+        <div class="course-actions">
+          <a class="btn btn-primary course-btn" href="https://curso-jogos-prog.onrender.com/?next=%2Fcursos.html%3Fcurso%3Dwindows">Entrar em Windows</a>
+          <a class="course-link" href="https://curso-jogos-prog.onrender.com/cursos.html?curso=windows">Link direto do curso</a>
+        </div>
+      </div>
+
+      <div class="course-card reveal">
+        <div class="course-icon">📄</div>
+        <h3>Word</h3>
+        <p>Crie documentos profissionais: formatação, tabelas, sumário e modelos prontos para o trabalho.</p>
+        <div class="course-actions">
+          <a class="btn btn-primary course-btn" href="https://curso-jogos-prog.onrender.com/?next=%2Fcursos.html%3Fcurso%3Dword">Entrar em Word</a>
+          <a class="course-link" href="https://curso-jogos-prog.onrender.com/cursos.html?curso=word">Link direto do curso</a>
+        </div>
+      </div>
+
+      <div class="course-card reveal">
+        <div class="course-icon">📊</div>
+        <h3>Excel</h3>
+        <p>Planilhas, fórmulas, gráficos e dashboards: organize dados e tome decisões com confiança.</p>
+        <div class="course-actions">
+          <a class="btn btn-primary course-btn" href="https://curso-jogos-prog.onrender.com/?next=%2Fcursos.html%3Fcurso%3Dexcel">Entrar em Excel</a>
+          <a class="course-link" href="https://curso-jogos-prog.onrender.com/cursos.html?curso=excel">Link direto do curso</a>
+        </div>
+      </div>
+
+      <div class="course-card reveal">
+        <div class="course-icon">📽️</div>
+        <h3>PowerPoint</h3>
+        <p>Apresentações que impressionam: slides, animações, templates e técnicas de comunicação visual.</p>
+        <div class="course-actions">
+          <a class="btn btn-primary course-btn" href="https://curso-jogos-prog.onrender.com/?next=%2Fcursos.html%3Fcurso%3Dpowerpoint">Entrar em PowerPoint</a>
+          <a class="course-link" href="https://curso-jogos-prog.onrender.com/cursos.html?curso=powerpoint">Link direto do curso</a>
+        </div>
+      </div>
+
+      <div class="course-card reveal">
+        <div class="course-icon">🎮</div>
+        <h3>Programação</h3>
+        <p>Lógica, blocos e código: aprenda programando de verdade com projetos reais.</p>
+        <div class="course-actions">
+          <a class="btn btn-primary course-btn" href="https://curso-jogos-prog.onrender.com/?next=%2Fcursos.html%3Fcurso%3Dprogramacao">Entrar em Programação</a>
+          <a class="course-link" href="https://curso-jogos-prog.onrender.com/cursos.html?curso=programacao">Link direto do curso</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- BENEFÍCIOS -->
   <section class="benefits" id="metodologia">
-    <h2>Por que escolher a gente</h2>
-    <div class="cards">
-      <div class="card">
-        <span class="emoji">💻</span>
-        <div>
-          <h3>Aulas práticas</h3>
-          <p>Mais de 70% do tempo é hands-on. Você aprende fazendo de verdade.</p>
-        </div>
+    <span class="section-label">Diferenciais</span>
+    <h2 class="section-title">Por que escolher a gente</h2>
+    <p class="section-sub">Método prático, mentoria real e resultado que abre portas no mercado.</p>
+
+    <div class="benefits-grid">
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">💻</div>
+        <h3>Aulas práticas</h3>
+        <p>Mais de 70% do tempo é hands-on. Você aprende fazendo de verdade.</p>
       </div>
-      <div class="card">
-        <span class="emoji">👩‍🏫</span>
-        <div>
-          <h3>Mentoria ao vivo</h3>
-          <p>Tire dúvidas em tempo real com professores que trabalham na área.</p>
-        </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">👩‍🏫</div>
+        <h3>Mentoria ao vivo</h3>
+        <p>Tire dúvidas em tempo real com professores que trabalham na área.</p>
       </div>
-      <div class="card">
-        <span class="emoji">🏆</span>
-        <div>
-          <h3>Certificado + Portfólio</h3>
-          <p>Saia com projetos prontos para mostrar em entrevistas.</p>
-        </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">🏆</div>
+        <h3>Certificado + Portfólio</h3>
+        <p>Saia com projetos prontos para mostrar em entrevistas.</p>
       </div>
-      <div class="card">
-        <span class="emoji">🚀</span>
-        <div>
-          <h3>Carreira</h3>
-          <p>Orientação de carreira e networking com o mercado de trabalho.</p>
-        </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">🚀</div>
+        <h3>Carreira</h3>
+        <p>Orientação de carreira e networking com o mercado de trabalho.</p>
       </div>
     </div>
   </section>
 
-  <!-- CTA FINAL -->
   <section class="cta-final" id="matricula">
-    <h2>Ela já deu o primeiro passo.<br>E você, vai ficar de fora?</h2>
-    <p>Vagas limitadas. Comece sua transformação hoje.</p>
-    <a href="https://wa.me/5562991683743?text=Olá! Quero me matricular no curso de informática" class="btn btn-white" target="_blank" rel="noopener">
-      Quero minha vaga agora
-    </a>
+    <div class="cta-box reveal">
+      <h2>Pronto para dar o próximo passo?</h2>
+      <p>Vagas limitadas. Comece sua transformação hoje.</p>
+      <a href="https://wa.me/5562991683743?text=Olá! Quero me matricular no curso de informática" class="btn btn-cta" target="_blank" rel="noopener">
+        Quero minha vaga agora →
+      </a>
+    </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="footer" id="contato">
     © 2026 InfoTech Academy<br>
     Curso de Informática • Transformando vidas através da tecnologia
   </footer>
 
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
